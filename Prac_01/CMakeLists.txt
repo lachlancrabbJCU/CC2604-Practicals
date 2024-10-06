@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.29)
-project(CC2604_Practicals)
+project(Prac_01)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(CC2604_Practicals main.cpp)
+add_compile_options(-fmodules-ts)
+
+add_custom_target(build_modules
+        COMMAND g++ -std=c++20 -fmodules-ts -x c++-system-header iostream
+)
+
+add_executable(Prac_01 main.cpp)
+
+add_dependencies(Prac_01 build_modules)
